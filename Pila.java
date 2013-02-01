@@ -39,7 +39,7 @@ public class Pila<T>
 		}
 		else
 		{
-			Nodo<T> now = this.registro = this.registro.sig;
+			Nodo<T> now = this.registro;
 			this.registro = this.registro.sig;
 			return now.dato;
 		}

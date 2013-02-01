@@ -19,8 +19,8 @@ public class Baraja
 		int n1,n2,aux;
 		for (int i=0; i<500; i++)
 		{
-			n1 = generador.nextInt()%40;
-			n2 = generador.nextInt()%40;
+			n1 = generador.nextInt(40);
+			n2 = generador.nextInt(40);
 			aux = this.cartas[n1];
 			this.cartas[n1] = this.cartas[n2];
 			this.cartas[n2] = aux;
