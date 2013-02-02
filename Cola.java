@@ -46,5 +46,3 @@ public class Cola<T>
 		return aux;
 	}
 }
-
-

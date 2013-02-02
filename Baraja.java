@@ -17,7 +17,7 @@ public class Baraja
 	{
 		Random generador = new Random();
 		int n1,n2,aux;
-		for (int i=0; i<500; i++)
+		for (int i=0; i<10000; i++)
 		{
 			n1 = generador.nextInt(40);
 			n2 = generador.nextInt(40);

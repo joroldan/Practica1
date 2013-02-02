@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.concurrent.TimeoutException;
 
 public class Mesa
 {
@@ -7,6 +7,7 @@ public class Mesa
 	private Jugador[] jugadores;
 	private int jugadores_activos;
 
+	@SuppressWarnings({"rawtypes","unchecked"})
 	public Mesa(int num)
 	{
 		this.numero_judadores=num;
@@ -31,7 +32,7 @@ public class Mesa
 		while (bar.quedanCartas())
 		{
 			aux=bar.getCarta();
-			System.out.println(this.jugadores[i%numero_judadores] + " recibe un " + aux);
+			//System.out.println(this.jugadores[i%numero_judadores] + " recibe un " + aux);
 			this.jugadores[i%numero_judadores].guardarCarta(aux);
 			i++;
 		}
@@ -57,7 +58,7 @@ public class Mesa
 				{
 					this.zonas[i].apilar(aux);
 					//aux2=this.zonas[i].cima();
-					System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
+					//System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
 				}
 			}
 		}
@@ -74,7 +75,7 @@ public class Mesa
 		{
 			if ((jugadores[i].getActivo()) && (this.zonas[i].cima()==win))
 			{
-				System.out.println("Jugador luchando: " + this.jugadores[i]);
+				//System.out.println("Jugador luchando: " + this.jugadores[i]);
 				//Sacamos carta bocaabajo
 				aux=this.jugadores[i].sacarCarta();
 				if (aux == null)
@@ -87,7 +88,7 @@ public class Mesa
 				{
 					this.zonas[i].apilar(aux);
 					//aux2=this.zonas[i].cima();
-					System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
+					//System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
 				
 					//Carta bocaarriba, la que lucha
 					aux=this.jugadores[i].sacarCarta();
@@ -101,7 +102,7 @@ public class Mesa
 					{
 						this.zonas[i].apilar(aux);
 						//aux2=this.zonas[i].cima();
-						System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
+						//System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
 						luchadores[j++]=i+1;
 					}
 				}
@@ -114,10 +115,10 @@ public class Mesa
 			if (i>0)
 			{
 				i--;
-				System.out.println("\t" + this.jugadores[i] + " había sacado un: " + this.zonas[i].cima());
+				//System.out.println("\t" + this.jugadores[i] + " había sacado un: " + this.zonas[i].cima());
 				if (max<this.zonas[i].cima())
 				{
-					System.out.println("Nuevo ganador..." + this.jugadores[i]);
+					//System.out.println("Nuevo ganador..." + this.jugadores[i]);
 					max = this.zonas[i].cima();
 					ganador = i;
 					guerra=false;
@@ -130,7 +131,7 @@ public class Mesa
 		}
 		if (guerra)
 		{
-			System.out.println("Tenemos guerra por un " + max);
+			//System.out.println("Tenemos guerra por un " + max);
 			ganador = this.guerra(max);
 		}
 
@@ -148,10 +149,10 @@ public class Mesa
 			//System.out.println("Buscando ganador...");
 			if (jugadores[i].getActivo())
 			{
-				System.out.println("\t" + this.jugadores[i] + " había sacado un: " + this.zonas[i].cima());
+				////System.out.println("\t" + this.jugadores[i] + " había sacado un: " + this.zonas[i].cima());
 				if (max<this.zonas[i].cima())
 				{
-					System.out.println("Nuevo ganador..." + this.jugadores[i]);
+					////System.out.println("Nuevo ganador..." + this.jugadores[i]);
 					max = this.zonas[i].cima();
 					ganador = i;
 					guerra=false;
@@ -165,22 +166,27 @@ public class Mesa
 		
 		if (guerra)
 		{
-			System.out.println("Tenemos guerra por un " + max);
+			//System.out.println("Tenemos guerra por un " + max);
 			ganador=this.guerra(max);
 		}
 		
-		System.out.println("\n\nEL GANADOR ES: " + jugadores[ganador]);
+		//System.out.println("\n\nEL GANADOR ES: " + jugadores[ganador]);
 		return ganador;
 	}
 
-	public Jugador partida()
+	public Jugador partida() throws TieException
 	{
-		int jugador=0;
+		int jugador=0,i=0;
 		while (jugadores_activos>1)
 		{
 			this.colocarMonton();
 			jugador = this.luchar();
 			this.colocarCartasA(jugador);
+			i++;
+			if(i>100000)
+			{
+				throw new TieException("Tras 100000 turnos la partida no se ha resuelto.\nSe considera empate.");
+			}
 		}
 		return this.jugadores[jugador];
 	}
@@ -193,6 +199,19 @@ public class Mesa
 			{
 				jugadores[winner].guardarCarta(p.desapilar());
 			}
+		}
+	}
+	@SuppressWarnings("serial")
+	class TieException extends TimeoutException
+	{
+		TieException()
+		{
+			super();
+		}
+
+		TieException(String s)
+		{
+			super(s);
 		}
 	}
 }

@@ -3,7 +3,7 @@ class Nodo<T> //todo package
 	T dato;
 	Nodo<T> sig;
 	
-	Nodo(T dato, Nodo n)
+	Nodo(T dato, Nodo<T> n)
 	{
 		this.dato=dato;
 		this.sig=n;
