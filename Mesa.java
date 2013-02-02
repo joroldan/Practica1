@@ -1,4 +1,5 @@
 import java.util.concurrent.TimeoutException;
+import java.util.Random;
 
 public class Mesa
 {
@@ -32,7 +33,7 @@ public class Mesa
 		while (bar.quedanCartas())
 		{
 			aux=bar.getCarta();
-			//System.out.println(this.jugadores[i%numero_judadores] + " recibe un " + aux);
+			System.out.println(this.jugadores[i%numero_judadores] + " recibe un " + aux);
 			this.jugadores[i%numero_judadores].guardarCarta(aux);
 			i++;
 		}
@@ -41,6 +42,7 @@ public class Mesa
 	private void colocarMonton()
 	{
 		Integer aux,aux2;
+		//System.out.println("Colocando montones...");
 		for (int i=0;i<this.numero_judadores;i++)
 		{
 			//System.out.println("Colocando montones...");
@@ -52,7 +54,7 @@ public class Mesa
 				{
 					this.jugadores[i].setActivo(false);
 					this.jugadores_activos--;
-					System.out.println(this.jugadores[i] + " eliminado.");
+					//System.out.println(this.jugadores[i] + " eliminado.");
 				}
 				else
 				{
@@ -82,13 +84,13 @@ public class Mesa
 				{
 					this.jugadores[i].setActivo(false);
 					this.jugadores_activos--;
-					System.out.println(this.jugadores[i] + " eliminado.");
+					//System.out.println(this.jugadores[i] + " eliminado.");
 				}
 				else
 				{
 					this.zonas[i].apilar(aux);
 					//aux2=this.zonas[i].cima();
-					//System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
+					//System.out.println(this.jugadores[i] + " oculta un " + aux);// + ", se lee " + aux2);
 				
 					//Carta bocaarriba, la que lucha
 					aux=this.jugadores[i].sacarCarta();
@@ -96,7 +98,7 @@ public class Mesa
 					{
 						this.jugadores[i].setActivo(false);
 						this.jugadores_activos--;
-						System.out.println(this.jugadores[i] + " eliminado.");
+						//System.out.println(this.jugadores[i] + " eliminado.");
 					}
 					else
 					{
@@ -179,13 +181,19 @@ public class Mesa
 		int jugador=0,i=0;
 		while (jugadores_activos>1)
 		{
+			for (int j=0;j<numero_judadores;j++)
+			{
+				//System.out.println("A " + jugadores[j] + " le quedan " + jugadores[j].numeroCartas() + "cartas.");
+				System.out.print(jugadores[j].numeroCartas()+"\t");
+			}
+			System.out.println("");
 			this.colocarMonton();
 			jugador = this.luchar();
-			this.colocarCartasA(jugador);
+			this.colorcarCartasRandomlyA(jugador);
 			i++;
 			if(i>100000)
 			{
-				throw new TieException("Tras 100000 turnos la partida no se ha resuelto.\nSe considera empate.");
+				throw new TieException("Tras 100.000 turnos la partida no se ha resuelto.\nSe considera empate.");
 			}
 		}
 		return this.jugadores[jugador];
@@ -201,6 +209,20 @@ public class Mesa
 			}
 		}
 	}
+
+	private void colorcarCartasRandomlyA(int winner)
+	{
+		int n;
+		Random rand = new Random();
+		for (int i=0; i<25; i++)
+		{
+			n=rand.nextInt(numero_judadores);
+			if (this.zonas[n].cima()!=null)
+				jugadores[winner].guardarCarta(this.zonas[n].desapilar());
+		}
+		colocarCartasA(winner);
+	}
+
 	@SuppressWarnings("serial")
 	class TieException extends TimeoutException
 	{

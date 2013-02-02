@@ -33,9 +33,10 @@ public class Jugador
 	
 	public int numeroCartas() //Esta mal hecho!! mucho ojo!
 	{
-		int num=0;
-		Cola<Integer> aux= new Cola<Integer>();
-		while(this.mazo.desencolar()!=null) //usar primero para no eliminarla
+		int num = 0;
+		Cola<Integer> aux = new Cola<Integer>();
+		//while(this.mazo.desencolar()!=null) //usar primero para no eliminarla
+		while(this.mazo.primero()!=null) //usar primero para no eliminarla
 		{
 			aux.encolar(this.mazo.desencolar());
 			num++;
