@@ -41,7 +41,7 @@ public class Mesa
 
 	private void colocarMonton()
 	{
-		Integer aux,aux2;
+		Integer aux;
 		//System.out.println("Colocando montones...");
 		for (int i=0;i<this.numero_judadores;i++)
 		{
@@ -49,21 +49,26 @@ public class Mesa
 			if (this.jugadores[i].getActivo())
 			{
 				//System.out.println("Jugador activo: " + this.jugadores[i]);
-				aux = this.jugadores[i].sacarCarta();
-				if (aux == null)
-				{
-					this.jugadores[i].setActivo(false);
-					this.jugadores_activos--;
-					//System.out.println(this.jugadores[i] + " eliminado.");
-				}
-				else
-				{
-					this.zonas[i].apilar(aux);
-					//aux2=this.zonas[i].cima();
-					//System.out.println(this.jugadores[i] + " saca un " + aux);// + ", se lee " + aux2);
-				}
+				aux = this.pedirCarta(i);
+				if (aux!=null) System.out.println(this.jugadores[i] + " saca un " + );
 			}
 		}
+	}
+
+	private Integer pedirCarta(int i)
+	{
+		Integer aux = this.jugadores[i].sacarCarta();
+		if (aux == null)
+		{
+			this.jugadores[i].setActivo(false);
+			this.jugadores_activos--;
+			System.out.println(this.jugadores[i] + " eliminado.");
+		}
+		else
+		{
+			this.zonas[i].apilar(aux);			
+		}
+		return aux;
 	}
 
 	private int guerra(Integer win) //Mejorar y mucho
@@ -79,6 +84,18 @@ public class Mesa
 			{
 				//System.out.println("Jugador luchando: " + this.jugadores[i]);
 				//Sacamos carta bocaabajo
+				aux = pedirCarta(i);
+				if (aux!=null)
+				{
+					System.out.println(this.jugadores[i] + " oculta un " + aux);
+					aux = pedirCarta(i);
+					if (aux!=null)
+					{
+						System.out.println(this.jugadores[i] + " saca un " + aux);
+						luchadores[j++]=i+1;
+					}
+				}
+/*
 				aux=this.jugadores[i].sacarCarta();
 				if (aux == null)
 				{
@@ -108,6 +125,7 @@ public class Mesa
 						luchadores[j++]=i+1;
 					}
 				}
+*/
 			}
 
 		}
@@ -133,7 +151,7 @@ public class Mesa
 		}
 		if (guerra)
 		{
-			//System.out.println("Tenemos guerra por un " + max);
+			System.out.println("Tenemos guerra por un " + max);
 			ganador = this.guerra(max);
 		}
 
@@ -191,9 +209,9 @@ public class Mesa
 			jugador = this.luchar();
 			this.colorcarCartasRandomlyA(jugador);
 			i++;
-			if(i>100000)
+			if(i>10000)
 			{
-				throw new TieException("Tras 100.000 turnos la partida no se ha resuelto.\nSe considera empate.");
+				throw new TieException("Tras 10.0000 turnos la partida no se ha resuelto.\nSe considera empate.");
 			}
 		}
 		return this.jugadores[jugador];
