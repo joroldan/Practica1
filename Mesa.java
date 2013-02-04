@@ -50,7 +50,7 @@ public class Mesa
 			{
 				//System.out.println("Jugador activo: " + this.jugadores[i]);
 				aux = this.pedirCarta(i);
-				if (aux!=null) System.out.println(this.jugadores[i] + " saca un " + );
+				if (aux!=null) System.out.println(this.jugadores[i] + " saca un " + aux);
 			}
 		}
 	}
