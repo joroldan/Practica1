@@ -13,7 +13,7 @@ public class JugadorGuerra extends Jugador
 		return this.enGuerra;
 	}
 	
-	public void enGuerra(boolean g)
+	public void setGuerra(boolean g)
 	{
 		this.enGuerra=g;
 	}
