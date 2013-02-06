@@ -7,10 +7,10 @@ public class Baraja
 
 	public Baraja()
 	{
-		this.cartas = new int[40];
-		for (int i=0; i<40; i++)
-			this.cartas[i]=(i%10)+1;
-		this.numcartas=40;
+		this.cartas = new int[52];
+		for (int i=0; i<52; i++)
+			this.cartas[i]=(i%13)+1;
+		this.numcartas=52;
 	}
 
 	public void barajar()
@@ -19,8 +19,8 @@ public class Baraja
 		int n1,n2,aux;
 		for (int i=0; i<10000; i++)
 		{
-			n1 = generador.nextInt(40);
-			n2 = generador.nextInt(40);
+			n1 = generador.nextInt(52);
+			n2 = generador.nextInt(52);
 			aux = this.cartas[n1];
 			this.cartas[n1] = this.cartas[n2];
 			this.cartas[n2] = aux;
