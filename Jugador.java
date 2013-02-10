@@ -1,23 +1,36 @@
+/************************************************************************
+  Jugador.java
+
+  Jugador de la guerra, con sus cartas
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
 public class Jugador
 {
 	final String nombre;
 	Cola<Integer> mazo;
 	boolean activo;
+	int numCartas;
 	
 	public Jugador(String s)
 	{
 		this.nombre = s;
+		this.numCartas = 0;
 		this.mazo   = new Cola<Integer>();
 		this.activo = true;
 	}
 	
 	public Integer sacarCarta()
 	{
+		numCartas--;
 		return this.mazo.desencolar();
 	}
 	
 	public void guardarCarta(Integer carta)
 	{
+		numCartas++;
 		this.mazo.encolar(carta);
 	}
 	
@@ -31,18 +44,9 @@ public class Jugador
 		this.activo = eliminado;
 	}
 	
-	public int numeroCartas() //Esta mal hecho!! mucho ojo!
+	public int numeroCartas()
 	{
-		int num = 0;
-		Cola<Integer> aux = new Cola<Integer>();
-		//while(this.mazo.desencolar()!=null) //usar primero para no eliminarla
-		while(this.mazo.primero()!=null) //usar primero para no eliminarla
-		{
-			aux.encolar(this.mazo.desencolar());
-			num++;
-		}
-		this.mazo=aux;
-		return num;
+		return numCartas;
 	}
 
 	public String toString()

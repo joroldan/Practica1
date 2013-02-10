@@ -1,9 +1,18 @@
+/************************************************************************
+  Mesa.java
+
+  Me que se encarga de guardar las cartas que se van echando
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
 public class Mesa
 {
 	private int numJugadores;
 	private Pila<Integer> [] montones;
 	
-	@SuppressWarnings({"rawtypes","unchecked"})
+	@SuppressWarnings("unchecked")//Evitamos warnings en el compilador al usar la contrucción de un vector sin generics
 	public Mesa(int numJug)
 	{
 		this.numJugadores=numJug;
@@ -31,6 +40,4 @@ public class Mesa
 	{
 		return this.montones[monton].pilaVacia();
 	}
-	
-	
 }

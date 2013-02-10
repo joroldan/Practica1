@@ -1,3 +1,13 @@
+/************************************************************************
+  Partida.java
+
+  Encargada de llevar a cabo todas las tareas de la partida y realizar el
+  juego completo turno a turno
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
 import java.util.Random;
 
 class Partida
@@ -8,6 +18,10 @@ class Partida
 	private int numJugadores;
 	private int numEliminados;
 
+	/************************************************************************
+		Crea una partida para num jugadores, reservándoles sitio en la mesa,
+		repartiendoles y creando una baraja para repartir después
+	************************************************************************/
 	public Partida(int num)
 	{
 		this.mesa = new Mesa(num);
@@ -23,6 +37,9 @@ class Partida
 		this.numEliminados = 0;
 	}
 
+	/************************************************************************
+		Reparte las cartas mientras queden en el monton siguiendo el orden
+	************************************************************************/
 	public void repartir()
 	{
 		int i=0;
@@ -36,11 +53,18 @@ class Partida
 		}
 	}
 
+	/************************************************************************
+		Mira si la partida ha terminado, es decir, solo queda un jugador
+		activo en ese momento
+	************************************************************************/
 	public boolean finPartida()
 	{
 		return (this.numEliminados==this.numJugadores-1);
 	}
 
+	/************************************************************************
+		Si ya ha sido el final de la partida devuelve el ganador, sino null
+	************************************************************************/
 	public Jugador ganador()
 	{
 		if (finPartida())
@@ -53,6 +77,9 @@ class Partida
 		return null;
 	}
 
+	/************************************************************************
+		Realiza una jugada completa, con la ayuda de funciones auxiliares
+	************************************************************************/
 	public void jugada()
 	{
 		this.colocarMontones();
@@ -60,6 +87,9 @@ class Partida
 		this.colocarCartasA(ganador);
 	}
 
+	/************************************************************************
+		PENDIENTE DE COMENTARIO
+	************************************************************************/
 	private int luchar()
 	{
 		int[] v = new int[numJugadores-numEliminados];
@@ -69,6 +99,9 @@ class Partida
 		return this.buscarGanador(v);
 	}
 
+	/************************************************************************
+		PENDIENTE DE COMENTARIO
+	************************************************************************/
 	private int buscarGanador(int[] v)
 	{
 		Integer max = 0;
@@ -92,6 +125,9 @@ class Partida
 		return ganador;
 	}
 
+	/************************************************************************
+		PENDIENTE DE COMENTARIO
+	************************************************************************/
 	private int guerra(int[] v, Integer max)
 	{
 		Integer aux=0;
@@ -125,26 +161,33 @@ class Partida
 		return buscarGanador(w);
 	}
 
+	/************************************************************************
+		Una vez encontrado el ganador se recogen las cartas de la mesa que
+		han sido lanzadas el turno anterior. No se siguen siempre el mismo
+		orden para evitar llegar a empates. Así se empieza por el ganador
+		hasta el final y se sigue recogiendo luego por el principio.
+	************************************************************************/
 	private void colocarCartasA(int winner)
 	{
-		int n;
-		Random rand = new Random();
-		for (int i=0; i<numJugadores*3; i++)
-		{
-			n=rand.nextInt(numJugadores);
-			if (mesa.cima(n)!=null)
-				jugadores[winner].guardarCarta(mesa.quitarCarta(n));
-		}
-
-		for (int i=0; i<numJugadores; i++)
+		// Empezamos recogiendo por el ganador hasta el final
+		for (int i=winner; i<numJugadores; i++)
 		{
 			while (mesa.cima(i)!=null)
-			{
 				jugadores[winner].guardarCarta(mesa.quitarCarta(i));
-			}
+		}
+		// Ahora recogemos desde el primero hasta el ganador
+		for (int i=0; i<winner; i++)
+		{
+			while (mesa.cima(i)!=null)
+				jugadores[winner].guardarCarta(mesa.quitarCarta(i));
 		}
 	}
 
+	/************************************************************************
+		Sirve para que al comenzar el turno, los jugadores activos saquen
+		carta y la coloquen en su monton para proceder a la busqueda del
+		ganador, y en caso de emparte ir a la guerra
+	************************************************************************/
 	private void colocarMontones()
 	{
 		Integer aux;
@@ -158,6 +201,12 @@ class Partida
 		}
 	}
 
+	/************************************************************************
+		Dado un entero que representa a un jugador del vector jugadores, se
+		pide una carta a ese jugador.
+		Si es nula, el jugador es eliminado y se devuelve null
+		Si no es nula se coloca en su montón de la mesa y se devuelve
+	************************************************************************/
 	private Integer pedirCarta(int i)
 	{
 		Integer aux = this.jugadores[i].sacarCarta();

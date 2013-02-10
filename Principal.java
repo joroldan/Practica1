@@ -1,3 +1,12 @@
+/************************************************************************
+  Principal.java
+
+  Clase principal que lleva a cabo la partida de la guerra y da el ganador
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
 import java.util.Scanner;
 import java.util.NoSuchElementException;
 
@@ -7,23 +16,26 @@ public class Principal
 	{
 		int n;
 		System.out.println("Comienza la partida: Juego de la guerra");
-		Scanner read = new Scanner(System.in);
 		System.out.println("¿Cuántos jugadores desea que jueguen la partida?");
+		Scanner read = new Scanner(System.in);
+		//Como hay lectura por pantalla, contemplamos un posible error de lectura
 		try
 		{
 			n = read.nextInt();
 		}
+		//Si no se da un valor válido se le avisa y se asumen 4 jugadores
 		catch (NoSuchElementException e)
 		{
 			System.err.println("El valor introducido no es válido, se asumen 4 jugadores.");
 			n = 4;
 		}
+		//Comienza la partida para n jugadores
 		Partida partida = new Partida(n);
-		while (!partida.finPartida())
-		{
-			partida.repartir();
-			partida.jugada();
-		}
+		//Repartimos las cartas
+		partida.repartir();
+		//Mientras no sea el final, hacemos otra jugada
+		while (!partida.finPartida()) partida.jugada();
+		//Imprimimos finalmente al ganador de la partida
 		System.out.println("\n\nEl ganador es: " + partida.ganador());
 
 	}

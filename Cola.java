@@ -1,3 +1,12 @@
+/************************************************************************
+  Cola.java
+
+  Implementación de una cola genérica
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
 public class Cola<T>
 {
 	private Nodo<T> primero;
@@ -17,7 +26,6 @@ public class Cola<T>
 			this.primero=nuevo;
 			this.ultimo=nuevo;
 		}
-		//else this.ultimo.sig=nuevo; //pendiente de corregir
 		else
 		{
 			this.ultimo.sig=nuevo;

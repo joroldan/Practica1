@@ -1,3 +1,12 @@
+/************************************************************************
+  Baraja.java
+
+  Clase baraja que se usa para crear y repartir las cartas. 52 cartas
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
 import java.util.Random;
 
 public class Baraja
@@ -19,8 +28,8 @@ public class Baraja
 		int n1,n2,aux;
 		for (int i=0; i<10000; i++)
 		{
-			n1 = generador.nextInt(52);
-			n2 = generador.nextInt(52);
+			n1 = generador.nextInt(this.numcartas);
+			n2 = generador.nextInt(this.numcartas);
 			aux = this.cartas[n1];
 			this.cartas[n1] = this.cartas[n2];
 			this.cartas[n2] = aux;

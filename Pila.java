@@ -1,3 +1,12 @@
+/************************************************************************
+  Pila.java
+
+  Implementación de una pila genérica
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
 public class Pila<T>
 {
 	private Nodo<T> registro;

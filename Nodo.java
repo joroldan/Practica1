@@ -1,7 +1,16 @@
-class Nodo<T> //todo package
+/************************************************************************
+  Nodo.java
+
+  Implementación de un nodo genérico para usar en Pila y Cola.
+
+  Laura Mallagaray Corral
+  Jorge Roldán López
+************************************************************************/
+
+class Nodo<T>
 {
-	T dato;
-	Nodo<T> sig;
+	T dato; //Package
+	Nodo<T> sig; //Package
 	
 	Nodo(T dato, Nodo<T> n)
 	{
