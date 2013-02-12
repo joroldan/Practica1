@@ -88,7 +88,11 @@ class Partida
 	}
 
 	/************************************************************************
-		PENDIENTE DE COMENTARIO
+		Devuelve el ganador de la jugada, para ello llama a la funcion
+		buscarGanador pasandole como parametro el vector correspondiente a
+		los jugadores activos en ese momento. Es una funcion intermedia a
+		buscarGanador, pues esta para su uso 'recursivo' necesita de un vector
+		con las componentes de los jugadores activos
 	************************************************************************/
 	private int luchar()
 	{
@@ -100,7 +104,12 @@ class Partida
 	}
 
 	/************************************************************************
-		PENDIENTE DE COMENTARIO
+		Va comparando los valores de las cartas echadas a la mesa por cada
+		jugador y se va quedando con el maximo, asi el jugador correspondiente
+		a la carta de valor mayor es el ganador (si el maximo corresponde a mas
+		de un jugador, si ese valor corresponde a las cartas de varios, se
+		produce la guerra).
+		Finalmente devuelve la posicion en la que se encuentra el jugador ganador
 	************************************************************************/
 	private int buscarGanador(int[] v)
 	{
@@ -126,17 +135,20 @@ class Partida
 	}
 
 	/************************************************************************
-		PENDIENTE DE COMENTARIO
+		Proceso de la guerra entre los jugadores que siguen activos en esa
+		jugada (ponen cada uno una carta boca abajo, y despues una boca arriba,
+		la cual determinara quien es el ganador, segun cual disponga del maximo
+		valor; si vuelven a sacar el mismo valor, se repite el proceso)
 	************************************************************************/
 	private int guerra(int[] v, Integer max)
 	{
 		Integer aux=0;
-		int[] luchadores = new int[numJugadores-numEliminados];
+		int[] luchadores = new int[numJugadores-numEliminados]; //vector que contiene los jugadores que van a luchar en la guerra
 		int j=0;
 		//Repartimos dos cartas a cada jugador de la guerra
 		for (int i: v)
 		{
-			if (this.mesa.cima(i)==max)
+			if (this.mesa.cima(i)==max) //Si estaba entre los de la guerra...
 			{
 				//Sacamos carta boca abajo
 				aux = pedirCarta(i);
@@ -153,11 +165,14 @@ class Partida
 				}
 			}
 		}
-
+		//En j tenemos el numero de jugadores que luchan
+		//Los que luchan, estan guardados en luchadores, pero puede haber componentes vacias
+		//Por eso creamos un segundo vector w ya del tamaño correcto
 		int[] w = new int[j];
 		for (int k=0; k<j; k++)
 			w[k]=luchadores[k];
 		
+		//buscamos ganador entre los que luchaban en la guerra
 		return buscarGanador(w);
 	}
 

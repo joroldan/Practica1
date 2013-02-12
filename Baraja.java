@@ -14,7 +14,7 @@ public class Baraja
 	private int [] cartas;
 	private int numcartas;
 
-	public Baraja()
+	public Baraja() //Constructor sin parametros de la clase Baraja
 	{
 		this.cartas = new int[52];
 		for (int i=0; i<52; i++)
@@ -36,14 +36,14 @@ public class Baraja
 		}
 	}
 
-	public int getCarta()
+	public int getCarta() //devuelve la carta correspondiente a la ultima posicion del vector que contiene todas las cartas
 	{
 		if (this.numcartas!=0)
 			return this.cartas[--this.numcartas];
 		else return -1;
 	}
 
-	public boolean quedanCartas()
+	public boolean quedanCartas() //devuelve true si quedan cartas y false en caso contrario
 	{
 		return (this.numcartas!=0);
 	}

@@ -14,7 +14,7 @@ public class Jugador
 	boolean activo;
 	int numCartas;
 	
-	public Jugador(String s)
+	public Jugador(String s) //Constructor de la clase Jugador
 	{
 		this.nombre = s;
 		this.numCartas = 0;
@@ -22,13 +22,13 @@ public class Jugador
 		this.activo = true;
 	}
 	
-	public Integer sacarCarta()
+	public Integer sacarCarta() //Se saca una carta del mazo del jugador
 	{
 		numCartas--;
 		return this.mazo.desencolar();
 	}
 	
-	public void guardarCarta(Integer carta)
+	public void guardarCarta(Integer carta) //Se añade una carta al final del mazo del jugador
 	{
 		numCartas++;
 		this.mazo.encolar(carta);

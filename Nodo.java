@@ -12,6 +12,8 @@ class Nodo<T>
 	T dato; //Package
 	Nodo<T> sig; //Package
 	
+	//Disponemos de 3 constructores para la clase Nodo, segun si le pasamos parametros y cuales le pasamos
+	
 	Nodo(T dato, Nodo<T> n)
 	{
 		this.dato=dato;
