@@ -188,7 +188,9 @@ class Partida
 		else //Si ningún jugador consigue acabar la guerra
 		{
 			w = new int[1];
-			w[0]=last;
+			w[0]=last; //Colocamos al jugador solo en el vector para que reciba las cartas
+			this.jugadores[last].setActivo(true); //lo deseliminamos, pues debe seguir jugando
+			System.out.println(this.jugadores[last] + " vuelve al no quedar nadie mas en la guerra actual.")
 		}
 		//buscamos ganador entre los que luchaban en la guerra
 		return buscarGanador(w);
