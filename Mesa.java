@@ -12,7 +12,7 @@ public class Mesa
 	private int numJugadores;
 	private Pila<Integer> [] montones;
 	
-	@SuppressWarnings("unchecked")//Evitamos warnings en el compilador al usar la contruccion de un vector sin generics
+	@SuppressWarnings({"unchecked","rawtypes"})//Evitamos warnings en el compilador al usar la contruccion de un vector sin generics
 	public Mesa(int numJug) //constructor de la clase Mesa
 	{
 		this.numJugadores=numJug;

@@ -143,13 +143,22 @@ class Partida
 	private int guerra(int[] v, Integer max)
 	{
 		Integer aux=0;
-		int[] luchadores = new int[numJugadores-numEliminados]; //vector que contiene los jugadores que van a luchar en la guerra
+
+		int last=0;
+		/* last sirve para el caso extremo de que todos los luchadores de la guerra
+		se queden sin ninguna carta durante la batalla, en ese caso, el último
+		jugador que ha echado carta es el ganador. Esto es un criterio propio no
+		definido en las reglas del juego*/
+
+		//vector que contiene los jugadores que van a luchar en la guerra
+		int[] luchadores = new int[numJugadores-numEliminados];
 		int j=0;
 		//Repartimos dos cartas a cada jugador de la guerra
 		for (int i: v)
 		{
 			if (this.mesa.cima(i)==max) //Si estaba entre los de la guerra...
 			{
+				last=i;
 				//Sacamos carta boca abajo
 				aux = pedirCarta(i);
 				if (aux!=null)
@@ -168,10 +177,19 @@ class Partida
 		//En j tenemos el numero de jugadores que luchan
 		//Los que luchan, estan guardados en luchadores, pero puede haber componentes vacias
 		//Por eso creamos un segundo vector w ya del tamaño correcto
-		int[] w = new int[j];
-		for (int k=0; k<j; k++)
-			w[k]=luchadores[k];
 		
+		int[] w;
+		if (j>0) //Si sobrevive algún jugador con cartas a la guerra, lo normal
+		{
+			w = new int[j];
+			for (int k=0; k<j; k++)
+				w[k]=luchadores[k];
+		}
+		else //Si ningún jugador consigue acabar la guerra
+		{
+			w = new int[1];
+			w[0]=last;
+		}
 		//buscamos ganador entre los que luchaban en la guerra
 		return buscarGanador(w);
 	}
