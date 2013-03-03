@@ -16,7 +16,7 @@ public class Principal
 	{
 		int n;
 		System.out.println("Comienza la partida: Juego de la guerra");
-		System.out.println("¿Cuantos jugadores desea que jueguen la partida?");
+		System.out.println("Cuantos jugadores desea que jueguen la partida?");
 		Scanner read = new Scanner(System.in);
 		//Como hay lectura por pantalla, contemplamos un posible error de lectura
 		try
