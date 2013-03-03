@@ -1,10 +1,10 @@
 /************************************************************************
   Cola.java
 
-  Implementación de una cola genérica
+  Implementacion de una cola generica
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 public class Cola<T>
@@ -18,7 +18,7 @@ public class Cola<T>
 		this.ultimo =null;
 	}
 
-	public void encolar (T elemento) //añade al final
+	public void encolar (T elemento) //coloca al final
 	{
 		Nodo<T> nuevo = new Nodo<T>(elemento);
 		if (this.primero==null)

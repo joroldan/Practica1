@@ -1,10 +1,10 @@
 /************************************************************************
   Pila.java
 
-  Implementación de una pila genérica
+  Implementacion de una pila generica
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 public class Pila<T>
@@ -16,7 +16,7 @@ public class Pila<T>
 		this.registro=null;
 	}
 
-	public void apilar(T elemento) //añade al principio
+	public void apilar(T elemento) //coloca al principio
 	{
 		if (this.registro==null)
 		{
@@ -34,13 +34,13 @@ public class Pila<T>
 		return this.registro==null;
 	}
 
-	public T cima() //devuelve el dato correspondiente al elemento que se ha añadido el ultimo a la Pila
+	public T cima() //devuelve el dato correspondiente al elemento que se ha colocado el ultimo a la Pila
 	{
 		if (this.registro==null) return null;
 		else return this.registro.dato;
 	}
 
-	public T desapilar() //elimina y devuelve el ultimo elemento que se ha añadido
+	public T desapilar() //elimina y devuelve el ultimo elemento que se ha colocado
 	{
 		if (this.registro==null)
 		{

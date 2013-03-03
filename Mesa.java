@@ -4,7 +4,7 @@
   Mesa que se encarga de guardar las cartas que se van echando
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 public class Mesa
@@ -22,7 +22,7 @@ public class Mesa
 			this.montones[i]= new Pila<Integer>();
 		}
 	}
-	public void addCarta(Integer carta, int monton) //añade la carta pasada como parametro en la cima del monton que se le pasa 
+	public void addCarta(Integer carta, int monton) //coloca la carta pasada como parametro en la cima del monton que se le pasa 
 	{
 		this.montones[monton].apilar(carta);
 	}

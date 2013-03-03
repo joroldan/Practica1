@@ -4,7 +4,7 @@
   Clase principal que lleva a cabo la partida de la guerra y da el ganador
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 import java.util.Scanner;
@@ -16,17 +16,17 @@ public class Principal
 	{
 		int n;
 		System.out.println("Comienza la partida: Juego de la guerra");
-		System.out.println("¿Cuántos jugadores desea que jueguen la partida?");
+		System.out.println("¿Cuantos jugadores desea que jueguen la partida?");
 		Scanner read = new Scanner(System.in);
 		//Como hay lectura por pantalla, contemplamos un posible error de lectura
 		try
 		{
 			n = read.nextInt();
 		}
-		//Si no se da un valor válido se le avisa y se asumen 4 jugadores
+		//Si no se da un valor valido se le avisa y se asumen 4 jugadores
 		catch (NoSuchElementException e)
 		{
-			System.err.println("El valor introducido no es válido, se asumen 4 jugadores.");
+			System.err.println("El valor introducido no es valido, se asumen 4 jugadores.");
 			n = 4;
 		}
 		//Comienza la partida para n jugadores

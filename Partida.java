@@ -5,7 +5,7 @@
   juego completo turno a turno
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 import java.util.Random;
@@ -19,8 +19,8 @@ class Partida
 	private int numEliminados;
 
 	/************************************************************************
-		Crea una partida para num jugadores, reservándoles sitio en la mesa,
-		repartiendoles y creando una baraja para repartir después
+		Crea una partida para num jugadores, reservandoles sitio en la mesa,
+		repartiendoles y creando una baraja para repartir despues
 	************************************************************************/
 	public Partida(int num)
 	{
@@ -146,7 +146,7 @@ class Partida
 
 		int last=0;
 		/* last sirve para el caso extremo de que todos los luchadores de la guerra
-		se queden sin ninguna carta durante la batalla, en ese caso, el último
+		se queden sin ninguna carta durante la batalla, en ese caso, el ultimo
 		jugador que ha echado carta es el ganador. Esto es un criterio propio no
 		definido en las reglas del juego*/
 
@@ -176,21 +176,21 @@ class Partida
 		}
 		//En j tenemos el numero de jugadores que luchan
 		//Los que luchan, estan guardados en luchadores, pero puede haber componentes vacias
-		//Por eso creamos un segundo vector w ya del tamaño correcto
+		//Por eso creamos un segundo vector w ya de la dimension correcta
 		
 		int[] w;
-		if (j>0) //Si sobrevive algún jugador con cartas a la guerra, lo normal
+		if (j>0) //Si sobrevive algun jugador con cartas a la guerra, lo normal
 		{
 			w = new int[j];
 			for (int k=0; k<j; k++)
 				w[k]=luchadores[k];
 		}
-		else //Si ningún jugador consigue acabar la guerra
+		else //Si ningun jugador consigue acabar la guerra
 		{
 			w = new int[1];
 			w[0]=last; //Colocamos al jugador solo en el vector para que reciba las cartas
 			this.jugadores[last].setActivo(true); //lo deseliminamos, pues debe seguir jugando
-			System.out.println(this.jugadores[last] + " vuelve al no quedar nadie mas en la guerra actual.")
+			System.out.println(this.jugadores[last] + " vuelve al no quedar nadie mas en la guerra actual.");
 		}
 		//buscamos ganador entre los que luchaban en la guerra
 		return buscarGanador(w);
@@ -199,7 +199,7 @@ class Partida
 	/************************************************************************
 		Una vez encontrado el ganador se recogen las cartas de la mesa que
 		han sido lanzadas el turno anterior. No se siguen siempre el mismo
-		orden para evitar llegar a empates. Así se empieza por el ganador
+		orden para evitar llegar a empates. Asi se empieza por el ganador
 		hasta el final y se sigue recogiendo luego por el principio.
 	************************************************************************/
 	private void colocarCartasA(int winner)
@@ -240,7 +240,7 @@ class Partida
 		Dado un entero que representa a un jugador del vector jugadores, se
 		pide una carta a ese jugador.
 		Si es nula, el jugador es eliminado y se devuelve null
-		Si no es nula se coloca en su montón de la mesa y se devuelve
+		Si no es nula se coloca en su monton de la mesa y se devuelve
 	************************************************************************/
 	private Integer pedirCarta(int i)
 	{

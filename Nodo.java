@@ -1,10 +1,10 @@
 /************************************************************************
   Nodo.java
 
-  Implementación de un nodo genérico para usar en Pila y Cola.
+  Implementacion de un nodo generico para usar en Pila y Cola.
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 class Nodo<T>

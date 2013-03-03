@@ -4,7 +4,7 @@
   Jugador de la guerra, con sus cartas
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 public class Jugador
@@ -28,7 +28,7 @@ public class Jugador
 		return this.mazo.desencolar();
 	}
 	
-	public void guardarCarta(Integer carta) //Se añade una carta al final del mazo del jugador
+	public void guardarCarta(Integer carta) //Se coloca una carta al final del mazo del jugador
 	{
 		numCartas++;
 		this.mazo.encolar(carta);

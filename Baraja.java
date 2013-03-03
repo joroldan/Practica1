@@ -4,7 +4,7 @@
   Clase baraja que se usa para crear y repartir las cartas. 52 cartas
 
   Laura Mallagaray Corral
-  Jorge Roldán López
+  Jorge Roldan Lopez
 ************************************************************************/
 
 import java.util.Random;
