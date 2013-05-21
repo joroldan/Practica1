@@ -16,7 +16,7 @@ public class Mesa
 	public Mesa(int numJug) //constructor de la clase Mesa
 	{
 		this.numJugadores=numJug;
-		this.montones= new Pila[numJug];
+		this.montones = new Pila[numJug];
 		for(int i=0; i<this.numJugadores; i++)
 		{
 			this.montones[i]= new Pila<Integer>();
